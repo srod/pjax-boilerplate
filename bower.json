@@ -1,0 +1,28 @@
+{
+  "name": "pjax-boilerplate",
+  "version": "0.0.0",
+  "homepage": "https://github.com/srod/pjax-boilerplate",
+  "authors": [
+    "Rodolphe Stoclin <srodolphe@gmail.com>"
+  ],
+  "keywords": [
+    "pjax",
+    "boilerplate"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "backbone": "~1.1.1",
+    "underscore": "~1.6.0",
+    "requirejs": "~2.1.10",
+    "jquery": "~2.1.0"
+  }
+}
