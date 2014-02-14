@@ -1,5 +1,5 @@
 # pjax-boilerplate
 
-    Build very fast single page application with pjax
+  Build very fast single page application with pjax
 
-    Early alpha version
+  Early alpha version
