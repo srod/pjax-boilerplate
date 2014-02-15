@@ -2,6 +2,7 @@ define(function(require) {
     'use strict';
 
     var Backbone = require('backbone');
+    var Ajax = require('modules/ajax');
     var $ = require('jquery');
 
     var ajaxRequest = function(url) {
@@ -13,13 +14,7 @@ define(function(require) {
             beforeSend: function(xhr) {
                 xhr.setRequestHeader('X-PJAX', 'true');
             },
-            success: requireController
-        });
-    };
-
-    var requireController = function(json) {
-        require(['/js/controllers/' + json.controller + '.js'], function(controller) {
-            controller.initialize(json);
+            success: Ajax.initialize
         });
     };
 
@@ -37,7 +32,7 @@ define(function(require) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
-            '*actions': ajaxRequest
+            '*all': ajaxRequest
         }
     });
 
