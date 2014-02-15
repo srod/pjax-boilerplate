@@ -1,22 +1,9 @@
 define(function(require) {
     'use strict';
 
-    var Backbone = require('backbone');
     var Ajax = require('modules/ajax');
+    var Backbone = require('backbone');
     var $ = require('jquery');
-
-    var ajaxRequest = function(url) {
-        url = (url) ? url : 'pages/homepage.html';
-
-        $.ajax({
-            url: '/' + url,
-            dataType: 'json',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-PJAX', 'true');
-            },
-            success: Ajax.initialize
-        });
-    };
 
     var bindLinks = function($a) {
         if (Backbone.history && Backbone.history._hasPushState) {
@@ -32,7 +19,7 @@ define(function(require) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
-            '*all': ajaxRequest
+            '*all': Ajax.ajaxRequest
         }
     });
 
