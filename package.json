@@ -1,0 +1,32 @@
+{
+  "name": "pjax-boilerplate",
+  "version": "0.0.0",
+  "description": "Build very fast single page application with pjax",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/srod/pjax-boilerplate.git"
+  },
+  "keywords": [
+    "pjax",
+    "boilerplate"
+  ],
+  "author": "Rodolphe Stoclin <srodolphe@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/srod/pjax-boilerplate/issues"
+  },
+  "homepage": "https://github.com/srod/pjax-boilerplate",
+  "devDependencies": {
+    "bower": "~1.2.8",
+    "grunt": "~0.4.2",
+    "grunt-bower-task": "~0.3.4",
+    "time-grunt": "~0.2.9",
+    "load-grunt-tasks": "~0.3.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "jshint-stylish": "~0.1.5",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "rjs-build-analysis": "0.0.3"
+  }
+}
