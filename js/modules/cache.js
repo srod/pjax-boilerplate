@@ -5,7 +5,7 @@ define(function(require) {
     var Backbone = require('backbone');
     var data;
 
-    var collection = Backbone.Collection.extend({
+    var Collection = Backbone.Collection.extend({
         localStorage: new Localstorage('cache')
     });
 
@@ -21,14 +21,14 @@ define(function(require) {
     };
 
     var initialize = function() {
-        data = new collection();
+        data = new Collection();
 
         // Retrieve all cache data
         data.fetch();
     }();
 
     return {
-        collection: collection,
+        collection: Collection,
         getCache: getCache,
         setCache: setCache
     };
