@@ -6,12 +6,14 @@
 </head>
 <body>
     <nav>
-        <a href="/" data-pjax>home</a>
+        <a href="/pages/homepage.html" data-pjax>home</a>
         <a href="/pages/page1.html" data-pjax>page1</a>
         <a href="/pages/page2.html" data-pjax>page2</a>
     </nav>
 
-    <div id="container"></div>
+    <div id="container">
+        <div data-view="homepage"><p>Homepage</p></div>
+    </div>
 
     <script data-main="js/app.js" src="js/vendor/requirejs/require.js"></script>
 </body>

@@ -9,18 +9,18 @@ define(function(require) {
         localStorage: new Localstorage('cache')
     });
 
-    var getCache = function(id) {
+    var getCache = function getCache(id) {
         return data.get(id);
     };
 
-    var setCache = function(id, json) {
+    var setCache = function setCache(id, json) {
         data.create({
             id: id,
             json: json
         });
     };
 
-    var initialize = function() {
+    var initialize = function initialize() {
         data = new Collection();
 
         // Retrieve all cache data

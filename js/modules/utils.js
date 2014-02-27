@@ -3,7 +3,7 @@ define(function(require) {
 
     var $ = require('jquery');
 
-    var cleanURL = function(url) {
+    var cleanURL = function cleanURL(url) {
         url = encodeURI(url);
 
         return url.replace(/\/|-|\\|\?|=/g, '');
@@ -11,42 +11,42 @@ define(function(require) {
 
     var hasInsertAdjacentHTML = !!$('body').prop('insertAdjacentHTML');
 
-    var html = function(type, domobj, html) {
+    var html = function html(type, domobj, shtml) {
         if (hasInsertAdjacentHTML) {
-            domobj.insertAdjacentHTML(type, html);
+            domobj.insertAdjacentHTML(type, shtml);
         } else {
             // jquery fallback
             switch (type) {
                 case 'beforeend':
-                    $(domobj).append(html);
+                    $(domobj).append(shtml);
                     break;
                 case 'afterbegin':
-                    $(domobj).prepend(html);
+                    $(domobj).prepend(shtml);
                     break;
                 case 'beforebegin':
-                    $(domobj).before(html);
+                    $(domobj).before(shtml);
                     break;
                 case 'afterend':
-                    $(domobj).after(html);
+                    $(domobj).after(shtml);
                     break;
             }
         }
         return domobj;
     };
 
-    var append = function(domobj, shtml) {
+    var append = function append(domobj, shtml) {
         return html('beforeend', domobj, shtml);
     };
 
-    var prepend = function(domobj, shtml) {
+    var prepend = function prepend(domobj, shtml) {
         return html('afterbegin', domobj, shtml);
     };
 
-    var before = function(domobj, shtml) {
+    var before = function before(domobj, shtml) {
         return html('beforebegin', domobj, shtml);
     };
 
-    var after = function(domobj, shtml) {
+    var after = function after(domobj, shtml) {
         return html('afterend', domobj, shtml);
     };
 

@@ -2,11 +2,12 @@ define(function(require) {
     'use strict';
 
     var Ajax = require('modules/ajax');
+    var View = require('modules/view');
     var Backbone = require('backbone');
     var $ = require('jquery');
 
-    var bindLinks = function($a) {
-        if (Backbone.history && Backbone.history._hasPushState) {
+    var bindLinks = function bindLinks($a) {
+        if (Backbone.history) {
             $a.on('click', function(e) {
                 e.preventDefault();
 
@@ -23,11 +24,21 @@ define(function(require) {
         }
     });
 
-    var initialize = function() {
+    var initialize = function initialize() {
         var router = new AppRouter();
-        Backbone.history.start({pushState: true});
 
-        // Bind all links with pjax data attribute
+        // check for old browsers that not support pushstate
+        var hasPushState = (history.pushState && typeof window.onpopstate !== 'undefined');
+
+        // for old browsers, silent === false, backbone router will trigger the route
+        Backbone.history.start({ pushState: true, silent: hasPushState });
+
+        // on first load only, bypass router (silent: true), avoid unnecessary ajax request
+        if (hasPushState) {
+            View.create(null);
+        }
+
+        // bind all links with pjax data attribute
         bindLinks($('a[data-pjax]'));
     };
 

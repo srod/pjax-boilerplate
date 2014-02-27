@@ -2,13 +2,16 @@
     'use strict';
 
     require.config({
-        baseUrl: 'js',
+        baseUrl: '/js',
 
         paths: {
             jquery: 'vendor/jquery/dist/jquery',
             underscore: 'vendor/underscore/underscore',
             backbone: 'vendor/backbone/backbone',
-            localstorage: 'vendor/backbone.localStorage/backbone.localStorage'
+            localstorage: 'vendor/backbone.localStorage/backbone.localStorage',
+            homepage: 'views/homepage',
+            page1: 'views/page1',
+            page2: 'views/page2'
         },
 
         shim: {
@@ -22,7 +25,7 @@
         }
     });
 
-    require(['modules/router'], function(Router) {
+    require(['modules/router'], function initializeApp(Router) {
         Router.initialize();
     });
 }());
