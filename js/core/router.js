@@ -1,8 +1,8 @@
 define(function(require) {
     'use strict';
 
-    var Ajax = require('modules/ajax');
-    var View = require('modules/view');
+    var Ajax = require('core/ajax');
+    var View = require('core/view');
     var Backbone = require('backbone');
     var $ = require('jquery');
 

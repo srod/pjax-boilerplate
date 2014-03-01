@@ -1,9 +1,9 @@
 define(function(require) {
     'use strict';
 
-    var View = require('modules/view');
+    var View = require('core/view');
     var Utils = require('modules/utils');
-    var Cache = require('modules/cache');
+    var Cache = require('core/cache');
     var $ = require('jquery');
 
     var ajaxRequest = function ajaxRequest(url) {

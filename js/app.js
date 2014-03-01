@@ -25,7 +25,7 @@
         }
     });
 
-    require(['modules/router'], function initializeApp(Router) {
+    require(['core/router'], function initializeApp(Router) {
         Router.initialize();
     });
 }());
