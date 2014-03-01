@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+    'use strict';
+
     require('time-grunt')(grunt);
     require('load-grunt-tasks')(grunt);
 
@@ -9,7 +11,12 @@ module.exports = function(grunt) {
             install: {
                 options: {
                     targetDir: 'js/vendor',
-                    layout: 'byComponent'
+                    layout: 'byComponent',
+                    install: true,
+                    verbose: false,
+                    cleanTargetDir: true,
+                    cleanBowerDir: true,
+                    bowerOptions: {}
                 }
             }
         },
