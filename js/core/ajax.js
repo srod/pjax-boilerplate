@@ -7,11 +7,10 @@ define(function(require) {
     var $ = require('jquery');
 
     var ajaxRequest = function ajaxRequest(url) {
-        var cache = true;
         var cacheData = Cache.getCache(Utils.cleanURL(url));
 
         // if we have nothing in cache
-        if (!cacheData || cache === false) {
+        if (!cacheData) {
             $.ajax({
                 url: '/' + (url || ''),
                 dataType: 'json',

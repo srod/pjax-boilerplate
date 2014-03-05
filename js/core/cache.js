@@ -4,20 +4,47 @@ define(function(require) {
     var Localstorage = require('localstorage');
     var Backbone = require('backbone');
     var data;
+    var cache = true;
+    var cacheExpirationSeconds = (60 * 60 * 1); // 1 heure
 
     var Collection = Backbone.Collection.extend({
         localStorage: new Localstorage('cache')
     });
 
     var getCache = function getCache(id) {
-        return data.get(id);
+        if (!cache) {
+            return false;
+        }
+
+        var dataInCache = data.get(id);
+
+        if (dataInCache) {
+            var expiration = Math.round((new Date().getTime() - dataInCache.attributes.timestamp) / 1000);
+
+            // is cache expired ?
+            if (expiration > cacheExpirationSeconds) {
+                removeCache(dataInCache);
+                dataInCache = null;
+            }
+        }
+
+        return dataInCache;
     };
 
     var setCache = function setCache(id, json) {
+        if (!cache) {
+            return false;
+        }
+
         data.create({
             id: id,
+            timestamp: new Date().getTime(),
             json: json
         });
+    };
+
+    var removeCache = function(item) {
+        data.remove(item);
     };
 
     var initialize = function initialize() {
