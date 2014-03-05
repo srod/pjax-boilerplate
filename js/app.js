@@ -5,7 +5,7 @@
         baseUrl: '/js',
 
         paths: {
-            jquery: 'vendor/jquery/dist/jquery',
+            jquery: 'vendor/jquery/jquery',
             underscore: 'vendor/underscore/underscore',
             backbone: 'vendor/backbone/backbone',
             localstorage: 'vendor/backbone.localStorage/backbone.localStorage',
