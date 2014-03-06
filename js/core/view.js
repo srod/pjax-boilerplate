@@ -1,10 +1,26 @@
 define(function(require) {
     'use strict';
 
+    var Backbone = require('backbone');
     var Utils = require('modules/utils');
     var Globals = require('modules/globals');
     var $ = require('jquery');
     var current;
+
+    var bindLinks = function bindLinks($a) {
+        if (Backbone.history) {
+            $a.on('click', function(e) {
+                e.preventDefault();
+
+                var href = this.pathname + this.search;
+
+                Backbone.history.navigate(href, true);
+            });
+        }
+    };
+
+    // bind all links with pjax data attribute
+    bindLinks($('a[data-pjax]'));
 
     var create = function createView(json) {
         json = json || {};
@@ -23,6 +39,9 @@ define(function(require) {
 
             // append new content
             Utils.append(Globals.$container[0], json.html);
+
+            // bind all links with pjax data attribute
+            bindLinks(Globals.$container.find('a[data-pjax]'));
         }
 
         // require view and initialize

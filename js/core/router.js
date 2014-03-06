@@ -1,22 +1,9 @@
 define(function(require) {
     'use strict';
 
+    var Backbone = require('backbone');
     var Ajax = require('core/ajax');
     var View = require('core/view');
-    var Backbone = require('backbone');
-    var $ = require('jquery');
-
-    var bindLinks = function bindLinks($a) {
-        if (Backbone.history) {
-            $a.on('click', function(e) {
-                e.preventDefault();
-
-                var href = this.pathname + this.search;
-
-                Backbone.history.navigate(href, true);
-            });
-        }
-    };
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -37,9 +24,6 @@ define(function(require) {
         if (hasPushState) {
             View.create(null);
         }
-
-        // bind all links with pjax data attribute
-        bindLinks($('a[data-pjax]'));
     };
 
     return {
