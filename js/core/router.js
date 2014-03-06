@@ -4,10 +4,14 @@ define(function(require) {
     var Backbone = require('backbone');
     var Ajax = require('core/ajax');
     var View = require('core/view');
+    var Analytics = require('modules/analytics');
 
     var AppRouter = Backbone.Router.extend({
         routes: {
             '*all': Ajax.ajaxRequest
+        },
+        initialize: function() {
+            this.bind('route', Analytics.trackPageView);
         }
     });
 

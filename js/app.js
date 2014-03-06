@@ -25,7 +25,8 @@
         }
     });
 
-    require(['core/router'], function initializeApp(Router) {
+    require(['core/router', 'modules/analytics'], function initializeApp(Router, Analytics) {
         Router.initialize();
+        Analytics.initialize();
     });
 }());
