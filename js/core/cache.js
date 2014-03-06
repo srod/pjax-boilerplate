@@ -1,10 +1,11 @@
 define(function(require) {
     'use strict';
 
+    var settings = require('settings');
     var Localstorage = require('localstorage');
     var Backbone = require('backbone');
     var data;
-    var cache = true;
+    var cache = settings.CACHE;
     var cacheExpirationSeconds = (60 * 60 * 1); // 1 heure
 
     var Collection = Backbone.Collection.extend({
