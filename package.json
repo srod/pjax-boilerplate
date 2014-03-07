@@ -16,6 +16,9 @@
     "url": "https://github.com/srod/pjax-boilerplate/issues"
   },
   "homepage": "https://github.com/srod/pjax-boilerplate",
+  "scripts": {
+    "test": "grunt test"
+  },
   "devDependencies": {
     "bower": "~1.2.8",
     "grunt": "~0.4.2",
@@ -27,6 +30,12 @@
     "grunt-contrib-requirejs": "~0.4.1",
     "grunt-contrib-uglify": "~0.3.2",
     "grunt-contrib-clean": "~0.5.0",
-    "rjs-build-analysis": "0.0.3"
+    "rjs-build-analysis": "0.0.3",
+    "mocha": "^1.17.1",
+    "mocha-phantomjs": "^3.3.2",
+    "phantomjs": "^1.9.7-1",
+    "grunt-shell": "^0.6.4",
+    "grunt-contrib-connect": "^0.7.1",
+    "grunt-nodemon": "^0.2.0"
   }
 }

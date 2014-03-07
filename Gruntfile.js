@@ -4,6 +4,8 @@ module.exports = function(grunt) {
     require('time-grunt')(grunt);
     require('load-grunt-tasks')(grunt);
 
+    var port = 8981;
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -66,10 +68,44 @@ module.exports = function(grunt) {
             }
         },
 
-        clean: ['js/app-min-temp.js']
+        clean: ['js/app-min-temp.js'],
+
+        nodemon: {
+            dev: {
+                options: {
+                    file: 'web-server.js'
+                }
+            }
+        },
+
+        connect: {
+            server: {
+                options: {
+                    port: port,
+                    base: '.'
+                }
+            }
+        },
+        shell: {
+            'mocha-phantomjs': {
+                command: 'mocha-phantomjs -R spec http://localhost:8000/testrunner.html',
+                options: {
+                    stdout: true,
+                    stderr: true
+                }
+            },
+            'ci': {
+                command: 'mocha-phantomjs -R spec http://localhost:' + port + '/testrunner.html',
+                options: {
+                    stdout: true,
+                    stderr: true
+                }
+            }
+        }
     });
 
     grunt.registerTask('init', ['bower']);
-    grunt.registerTask('test', ['jshint:dev']);
+    grunt.registerTask('js', ['jshint:dev']);
     grunt.registerTask('build', ['jshint:dev', 'requirejs', 'uglify', 'clean']);
+    grunt.registerTask('test', ['connect', 'shell:ci']);
 };

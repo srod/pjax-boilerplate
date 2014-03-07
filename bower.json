@@ -19,10 +19,14 @@
     "tests"
   ],
   "dependencies": {
-      "backbone": "~1.1.1",
-      "underscore": "~1.6.0",
-      "requirejs": "~2.1.10",
-      "jquery": "~2.1.0",
-      "backbone.localStorage": "~1.1.7"
+    "backbone": "~1.1.1",
+    "underscore": "~1.6.0",
+    "requirejs": "~2.1.10",
+    "jquery": "~2.1.0",
+    "backbone.localStorage": "~1.1.7"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "chai": "~1.9.0"
   }
 }

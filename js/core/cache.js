@@ -17,7 +17,7 @@ define(function(require) {
             return false;
         }
 
-        var dataInCache = data.get(id);
+        var dataInCache = (data.get(id) || null);
 
         if (dataInCache) {
             var expiration = Math.round((new Date().getTime() - dataInCache.attributes.timestamp) / 1000);
@@ -42,6 +42,8 @@ define(function(require) {
             timestamp: new Date().getTime(),
             json: json
         });
+
+        return data.get(id);
     };
 
     var removeCache = function(item) {
