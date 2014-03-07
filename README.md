@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/srod/pjax-boilerplate.png?branch=master)](https://travis-ci.org/srod/pjax-boilerplate)
+
 # pjax-boilerplate
 
   Build very fast single page application with pjax
