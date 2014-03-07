@@ -88,14 +88,14 @@ module.exports = function(grunt) {
         },
         shell: {
             'mocha-phantomjs': {
-                command: 'mocha-phantomjs -R spec http://localhost:8000/testrunner.html',
+                command: 'mocha-phantomjs -R spec http://localhost:8000/test/testrunner.html',
                 options: {
                     stdout: true,
                     stderr: true
                 }
             },
             'ci': {
-                command: 'mocha-phantomjs -R spec http://localhost:' + port + '/testrunner.html',
+                command: 'mocha-phantomjs -R spec http://localhost:' + port + '/test/testrunner.html',
                 options: {
                     stdout: true,
                     stderr: true
