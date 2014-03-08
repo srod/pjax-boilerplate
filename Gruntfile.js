@@ -70,6 +70,24 @@ module.exports = function(grunt) {
 
         clean: ['js/app-min-temp.js'],
 
+        watch: {
+// http://badwing.com/my-gruntfile-js-an-example-gruntfile-and-my-workflow/
+//            scripts: {
+//                files: [
+//                    'public/javascripts/zoltar/**/*.js', 'public/javascripts/support/**/*.js', '!public/javascripts/dist/**/*.js'
+//                ],
+//                tasks: ['ngmin', 'uglify', 'docular']
+//            },
+//            serverTests: {
+//                files: ['config/**/*.js', 'server.js', 'models/**/*.js', 'routes/**/*.js', 'utils/**/*.js', 'spec/**/*.js', 'public/schemas/**/*.json'],
+//                tasks: ['jasmine_node']
+//            },
+            clientTests: {
+                files: ['js/**/*.js'],
+                tasks: ['karma']
+            }
+        },
+
         nodemon: {
             dev: {
                 options: {
@@ -101,11 +119,23 @@ module.exports = function(grunt) {
                     stderr: true
                 }
             }
+        },
+
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            },
+            travis: {
+                configFile: 'karma.conf.js',
+                singleRun: true,
+                browsers: ['PhantomJS']
+            }
         }
     });
 
     grunt.registerTask('init', ['bower']);
     grunt.registerTask('js', ['jshint:dev']);
     grunt.registerTask('build', ['jshint:dev', 'requirejs', 'uglify', 'clean']);
-    grunt.registerTask('test', ['connect', 'shell:ci']);
+    grunt.registerTask('test2', ['connect', 'shell:ci']);
+    grunt.registerTask('test', ['karma:travis']);
 };

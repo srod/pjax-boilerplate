@@ -19,7 +19,7 @@ require.config({
 });
 
 require([
-    'test/test.core-cache'
+    'chai', 'test/test.core-cache'
 ], function() {
     'use strict';
 
