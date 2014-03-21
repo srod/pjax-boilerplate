@@ -18,7 +18,7 @@ define([
 
         describe('.getCache', function() {
             it('should get from cache a null value', function(done) {
-                var cacheData = Cache.getCache('/fake-url');
+                var cacheData = Cache.getCache(Utils.cleanURL('/fake-url.html'));
                 expect(cacheData).to.be.null;
                 done();
             });
