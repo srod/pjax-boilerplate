@@ -11,6 +11,14 @@ module.exports = function(config) {
       'chai'
     ],
 
+    plugins: [
+      'karma-requirejs',
+      'karma-mocha',
+      'karma-chai',
+      'karma-spec-reporter',
+      'karma-phantomjs-launcher'
+    ],
+
     files: [
       // all vendor files
       {
