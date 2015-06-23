@@ -1,4 +1,16 @@
-define(function(require) {
+//var data;
+//var cache = settings.CACHE;
+//var cacheExpirationSeconds = (60 * 60 * 1); // 1 heure
+
+class Cache {
+  constructor() {
+    console.log('cache init');
+  }
+}
+
+export default Cache;
+
+/*define(function(require) {
   'use strict';
 
   var settings = require('settings');
@@ -62,4 +74,4 @@ define(function(require) {
     getCache: getCache,
     setCache: setCache
   };
-});
+});*/

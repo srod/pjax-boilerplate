@@ -1,3 +1,4 @@
+/*
 define(function(require) {
   'use strict';
 
@@ -57,4 +58,4 @@ define(function(require) {
     before: before,
     after: after
   };
-});
+});*/

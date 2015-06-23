@@ -1,3 +1,4 @@
+/*
 require.config({
   baseUrl: '/js',
   paths: {
@@ -33,3 +34,4 @@ require([
     mocha.run();
   }
 });
+*/

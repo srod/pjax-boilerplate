@@ -1,3 +1,4 @@
+/*
 define(function(require) {
   'use strict';
 
@@ -8,11 +9,11 @@ define(function(require) {
     el: '#container',
 
     initialize: function(json) {
-      console.log('in view page1', json);
+      console.log('in view page2', json);
 
       if (json && json.html) {
         this.$el.html(json.html);
       }
     }
   });
-});
+});*/

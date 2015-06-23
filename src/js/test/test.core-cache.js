@@ -1,3 +1,4 @@
+/*
 define(['jquery', 'backbone', 'chai', 'core/cache', 'modules/utils'],
   function($, Backbone, chai, Cache, Utils) {
   'use strict';
@@ -29,4 +30,4 @@ define(['jquery', 'backbone', 'chai', 'core/cache', 'modules/utils'],
       });
     });
   });
-});
+});*/

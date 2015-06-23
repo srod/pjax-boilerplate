@@ -1,3 +1,4 @@
+/*
 define(function(require) {
   'use strict';
 
@@ -79,4 +80,4 @@ define(function(require) {
   return {
     create: create
   };
-});
+});*/
