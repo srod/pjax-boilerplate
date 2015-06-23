@@ -1,3 +1,4 @@
+/*
 var tests = Object.keys(window.__karma__.files).filter(function(file) {
   return /test\.(.*)\.js$/.test(file);
 });
@@ -18,4 +19,4 @@ require({
 
   // start test run, once requirejs is done
   callback: window.__karma__.start
-});
+});*/

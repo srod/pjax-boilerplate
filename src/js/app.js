@@ -1,3 +1,11 @@
+import Router from './core/router';
+
+(() => {
+  let router = new Router();
+  router.start();
+})();
+
+/*
 (function() {
   'use strict';
 
@@ -35,4 +43,4 @@
     Router.initialize();
     Analytics.initialize();
   });
-}());
+}());*/

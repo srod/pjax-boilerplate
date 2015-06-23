@@ -1,3 +1,4 @@
+/*
 define(function(require) {
   'use strict';
 
@@ -49,4 +50,4 @@ define(function(require) {
     initialize: initialize,
     trackPageView: trackPageView
   };
-});
+});*/

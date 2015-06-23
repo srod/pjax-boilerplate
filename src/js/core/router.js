@@ -1,3 +1,33 @@
+import Ajax from './ajax';
+
+class Router extends Backbone.Router {
+  constructor() {
+    console.log('router init');
+
+    let options = {};
+    options.routes = {
+      '*all': () => {
+        console.log('router all routes');
+        var ajax = new Ajax();
+        ajax.ajaxRequest();
+      }
+    };
+    options.initialize = () => {
+      //this.bind('route', Analytics.trackPageView);
+    };
+
+    super(options);
+  }
+
+  start() {
+    console.log('router start');
+
+  }
+}
+
+export default Router;
+
+/*
 define(function(require) {
   'use strict';
 
@@ -36,4 +66,4 @@ define(function(require) {
   return {
     initialize: initialize
   };
-});
+});*/
