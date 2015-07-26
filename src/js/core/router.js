@@ -1,55 +1,31 @@
 import Ajax from './ajax';
+import View from './view';
+import analytics from '../modules/analytics';
 
 class Router extends Backbone.Router {
   constructor() {
     console.log('router init');
 
+    let ajax = new Ajax();
     let options = {};
     options.routes = {
-      '*all': () => {
-        console.log('router all routes');
-        var ajax = new Ajax();
-        ajax.ajaxRequest();
-      }
-    };
-    options.initialize = () => {
-      //this.bind('route', Analytics.trackPageView);
+      '*all': ajax.ajaxRequest
     };
 
     super(options);
   }
 
+  initialize() {
+    this.bind('route', analytics.trackPageView);
+  }
+
   start() {
     console.log('router start');
 
-  }
-}
-
-export default Router;
-
-/*
-define(function(require) {
-  'use strict';
-
-  var Backbone = require('backbone');
-  var Ajax = require('core/ajax');
-  var View = require('core/view');
-  var Analytics = require('modules/analytics');
-
-  var AppRouter = Backbone.Router.extend({
-    routes: {
-      '*all': Ajax.ajaxRequest
-    },
-    initialize: function() {
-      this.bind('route', Analytics.trackPageView);
-    }
-  });
-
-  var initialize = function initialize() {
-    var router = new AppRouter();
+    let view = new View();
 
     // check for old browsers that not support pushstate
-    var hasPushState = (history.pushState && typeof window.onpopstate !== 'undefined');
+    let hasPushState = (history.pushState && typeof window.onpopstate !== 'undefined');
 
     // for old browsers, silent === false, backbone router will trigger the route
     Backbone.history.start({
@@ -59,11 +35,11 @@ define(function(require) {
 
     // on first load only, bypass router (silent: true), avoid unnecessary ajax request
     if (hasPushState) {
-      View.create(null);
+      view.create(null);
     }
-  };
 
-  return {
-    initialize: initialize
-  };
-});*/
+    analytics.trackPageView();
+  }
+}
+
+export default Router;

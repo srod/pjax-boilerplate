@@ -1,53 +1,46 @@
-/*
-define(function(require) {
-  'use strict';
+import settings from '../settings';
 
-  var settings = require('settings');
-  var Backbone = require('backbone');
+const analytics = {};
 
-  var trackPageView = function() {
-    if (settings.GOOGLE_ANALYTICS) {
-      var url = Backbone.history.getFragment();
+analytics.init = () => {
+  console.log('analytics.init');
 
-      // prepend slash
-      if (!/^\//.test(url) && url !== '') {
-        url = '/' + url;
-      }
+  window._gaq = window._gaq || [];
+  _gaq.push([
+    '_setAccount',
+    settings.GOOGLE_ANALYTICS_ACCOUNT
+  ]);
 
-      _gaq.push([
-        '_trackPageview',
-        url
-      ]);
-    }
-  };
-
-  var initialize = function() {
-    window._gaq = window._gaq || [];
+  if (settings.GOOGLE_ANALYTICS_DOMAIN) {
     _gaq.push([
-      '_setAccount',
-      settings.GOOGLE_ANALYTICS_ACCOUNT
+      '_setDomainName',
+      settings.GOOGLE_ANALYTICS_DOMAIN
     ]);
+  }
 
-    if (settings.GOOGLE_ANALYTICS_DOMAIN) {
-      _gaq.push([
-        '_setDomainName',
-        settings.GOOGLE_ANALYTICS_DOMAIN
-      ]);
+  (function() {
+    var ga = document.createElement('script');
+    ga.async = true;
+    ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+};
+
+analytics.trackPageView = () => {
+  if (settings.GOOGLE_ANALYTICS) {
+    var url = Backbone.history.getFragment();
+
+    // prepend slash
+    if (!/^\//.test(url) && url !== '') {
+      url = '/' + url;
     }
 
-    trackPageView();
+    _gaq.push([
+      '_trackPageview',
+      url
+    ]);
+  }
+};
 
-    (function() {
-      var ga = document.createElement('script');
-      ga.async = true;
-      ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    })();
-  };
-
-  return {
-    initialize: initialize,
-    trackPageView: trackPageView
-  };
-});*/
+export default analytics;

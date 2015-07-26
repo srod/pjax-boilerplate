@@ -1,19 +1,21 @@
-/*
-define(function(require) {
-  'use strict';
+class Homepage extends Backbone.View {
+  constructor() {
+    console.log('homepage');
 
-  var Backbone = require('backbone');
+    let options = {
+      el: '#container'
+    };
 
-  return Backbone.View.extend({
+    super(options);
+  }
 
-    el: '#container',
+  start(json) {
+    console.log('in view homepage', json);
 
-    initialize: function(json) {
-      console.log('in view homepage', json);
-
-      if (json && json.html) {
-        this.$el.html(json.html);
-      }
+    if (json && json.html) {
+      this.$el.html(json.html);
     }
-  });
-});*/
+  }
+}
+
+export default Homepage;
