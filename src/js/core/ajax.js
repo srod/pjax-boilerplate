@@ -1,64 +1,42 @@
-//import Cache from './cache';
+import View from './view';
+import Cache from './cache';
+import utils from '../modules/utils';
 
 class Ajax {
   constructor() {
     console.log('ajax init');
+
+    //this.view = new View();
   }
 
-  /*ajaxRequest(url) {
-    var cacheData = Cache.getCache(Utils.cleanURL(url));
+  ajaxRequest(url) {
+    let view = new View();
+    let cache = new Cache();
+    let cacheData = cache.getCache(utils.cleanURL(url));
+    let ajaxRequestCallback = (json) => {
+      console.log('json', json);
+      console.log('this', this);
+      // Set data in cache
+      cache.setCache(utils.cleanURL(url), json);
+      console.log('DONE');
+      view.create(json);
+    };
 
     // if we have nothing in cache
     if (!cacheData) {
+      console.log('NO CACHE', url);
       $.ajax({
         url: '/' + (url || ''),
         dataType: 'json',
         beforeSend: function(xhr) {
           xhr.setRequestHeader('X-PJAX', 'true');
         }
-      }).done(function ajaxRequestCallback(json) {
-        // Set data in cache
-        Cache.setCache(Utils.cleanURL(url), json);
-        View.create(json);
-      });
+      }).done(ajaxRequestCallback);
     } else {
-      View.create(cacheData.attributes.json);
+      console.log('ELSE');
+      view.create(cacheData.attributes.json);
     }
-  };*/
+  }
 }
 
 export default Ajax;
-
-/*define(function(require) {
-  'use strict';
-
-  var View = require('core/view');
-  var Utils = require('modules/utils');
-  var Cache = require('core/cache');
-  var $ = require('jquery');
-
-  var ajaxRequest = function ajaxRequest(url) {
-    var cacheData = Cache.getCache(Utils.cleanURL(url));
-
-    // if we have nothing in cache
-    if (!cacheData) {
-      $.ajax({
-        url: '/' + (url || ''),
-        dataType: 'json',
-        beforeSend: function(xhr) {
-          xhr.setRequestHeader('X-PJAX', 'true');
-        }
-      }).done(function ajaxRequestCallback(json) {
-        // Set data in cache
-        Cache.setCache(Utils.cleanURL(url), json);
-        View.create(json);
-      });
-    } else {
-      View.create(cacheData.attributes.json);
-    }
-  };
-
-  return {
-    ajaxRequest: ajaxRequest
-  };
-});*/

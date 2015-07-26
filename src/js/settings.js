@@ -1,24 +1,17 @@
+const settings = {};
+
 /*
-define(function() {
-  'use strict';
+ * App
+ */
 
-  var settings = {};
+settings.CACHE = true;
 
-  */
 /*
-   * App
-   *//*
+ * Google Analytics
+ */
 
-  settings.CACHE = true;
+settings.GOOGLE_ANALYTICS = true;
+settings.GOOGLE_ANALYTICS_ACCOUNT = 'UA-xx-xx';
+settings.GOOGLE_ANALYTICS_DOMAIN = null;
 
-  */
-/*
-   * Google Analytics
-   *//*
-
-  settings.GOOGLE_ANALYTICS = true;
-  settings.GOOGLE_ANALYTICS_ACCOUNT = 'UA-xx-xx';
-  settings.GOOGLE_ANALYTICS_DOMAIN = null;
-
-  return settings;
-});*/
+export default settings;

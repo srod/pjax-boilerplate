@@ -1,14 +1,23 @@
-/*
-define(function(require) {
-  'use strict';
+import globals from '../modules/globals';
+import utils from '../modules/utils';
+import Homepage from '../views/homepage';
+import Page1 from '../views/page1';
+import Page2 from '../views/page2';
 
-  var Backbone = require('backbone');
-  var Utils = require('modules/utils');
-  var Globals = require('modules/globals');
-  var $ = require('jquery');
-  var current;
+class View {
+  constructor() {
+    console.log('view init');
 
-  var bindLinks = function bindLinks($a) {
+    this.current = null;
+    this.homepage = new Homepage();
+    this.page1 = new Page1();
+    this.page2 = new Page2();
+
+    // bind all links with pjax data attribute
+    this.bindLinks($('a[data-pjax]'));
+  }
+
+  bindLinks($a) {
     if (Backbone.history) {
       $a.on('click', function(e) {
         e.preventDefault();
@@ -18,12 +27,9 @@ define(function(require) {
         Backbone.history.navigate(href, true);
       });
     }
-  };
+  }
 
-  // bind all links with pjax data attribute
-  bindLinks($('a[data-pjax]'));
-
-  var create = function createView(json) {
+  create(json) {
     json = json || {};
 
     // set title document
@@ -36,34 +42,41 @@ define(function(require) {
       window.scrollTo(0, 0);
 
       // empty old content
-      Globals.$container.empty();
+      globals.$container.empty();
 
       // append new content
-      Utils.append(Globals.$container[0], json.html);
+      utils.append(globals.$container[0], json.html);
 
       // bind all links with pjax data attribute
-      bindLinks(Globals.$container.find('a[data-pjax]'));
+      this.bindLinks(globals.$container.find('a[data-pjax]'));
     }
 
     // require view and initialize
     // we must have a html tag with data-view="myviewname"
-    var view = $('<div>' + (json.html || Globals.$body.html()) + '</div>').find('[data-view]:eq(0)').data('view');
+    var view = $('<div>' + (json.html || globals.$body.html()) + '</div>').find('[data-view]:eq(0)').data('view');
 
     if (view) {
-      require([view], function requireViewCallback(V) {
+      if (this.current) {
+        this.destroy(this.current);
+      }
+
+      this.current = this[view];
+      this[view].start(json);
+
+      /*require([view], function requireViewCallback(V) {
         // if a view exist, destroy it
-        if (current) {
-          destroy(current);
+        if (this.current) {
+          this.destroy(this.current);
         }
 
-        current = new V(json);
-      });
+        this.current = new V(json);
+      });*/
     } else {
       throw new Error('Please provide a view name !');
     }
-  };
+  }
 
-  var destroy = function destroy(view) {
+  destroy(view) {
     if (view.unbind) {
       view.unbind();
     }
@@ -75,9 +88,7 @@ define(function(require) {
     // remove view from DOM
     //        view.remove();
     //        Backbone.View.prototype.remove.call(view);
-  };
+  }
+}
 
-  return {
-    create: create
-  };
-});*/
+export default View;

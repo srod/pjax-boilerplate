@@ -1,19 +1,21 @@
-/*
-define(function(require) {
-  'use strict';
+class Page2 extends Backbone.View {
+  constructor() {
+    console.log('Page2');
 
-  var Backbone = require('backbone');
+    let options = {
+      el: '#container'
+    };
 
-  return Backbone.View.extend({
+    super(options);
+  }
 
-    el: '#container',
+  start(json) {
+    console.log('in view Page2', json);
 
-    initialize: function(json) {
-      console.log('in view page2', json);
-
-      if (json && json.html) {
-        this.$el.html(json.html);
-      }
+    if (json && json.html) {
+      this.$el.html(json.html);
     }
-  });
-});*/
+  }
+}
+
+export default Page2;
