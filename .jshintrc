@@ -4,7 +4,9 @@
     "_gaq": true,
     "require": true,
     "define": true,
-    "_": true
+    "_": true,
+    "Backbone": true,
+    "$": true
   },
   "indent": 2,
   "quotmark": "single",
@@ -21,5 +23,6 @@
   "trailing": true,
   "browser": true,
   "jquery": true,
-  "white": false
+  "white": false,
+  "esnext": true
 }
