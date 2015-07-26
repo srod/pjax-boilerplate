@@ -9,6 +9,8 @@
     "node": true
   },
   "globals": {
-      "Backbone": true
+      "Backbone": true,
+      "$": true,
+      "_gaq": true
   }
 }
