@@ -20,12 +20,13 @@ class Router extends Backbone.Router {
   }
 
   start() {
-    console.log('router start');
-
     let view = new View();
 
     // check for old browsers that not support pushstate
-    let hasPushState = (history.pushState && typeof window.onpopstate !== 'undefined');
+    let hasPushState = (
+      history.pushState &&
+      typeof window.onpopstate !== 'undefined'
+    );
 
     // for old browsers, silent === false, backbone router will trigger the route
     Backbone.history.start({

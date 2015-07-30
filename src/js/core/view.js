@@ -1,17 +1,11 @@
 import globals from '../modules/globals';
 import utils from '../modules/utils';
-import Homepage from '../views/homepage';
-import Page1 from '../views/page1';
-import Page2 from '../views/page2';
 
 class View {
   constructor() {
     console.log('view init');
 
     this.current = null;
-    this.homepage = new Homepage();
-    this.page1 = new Page1();
-    this.page2 = new Page2();
 
     // bind all links with pjax data attribute
     this.bindLinks($('a[data-pjax]'));
@@ -53,24 +47,18 @@ class View {
 
     // require view and initialize
     // we must have a html tag with data-view="myviewname"
-    var view = $('<div>' + (json.html || globals.$body.html()) + '</div>').find('[data-view]:eq(0)').data('view');
+    var view = $('<div>' + (json.html || globals.$body.html()) + '</div>')
+      .find('[data-view]:eq(0)').data('view');
 
     if (view) {
-      if (this.current) {
-        this.destroy(this.current);
-      }
-
-      this.current = this[view];
-      this[view].start(json);
-
-      /*require([view], function requireViewCallback(V) {
-        // if a view exist, destroy it
+      require('bundle!../views/' + view + '.js')(function(V) {
         if (this.current) {
           this.destroy(this.current);
         }
 
-        this.current = new V(json);
-      });*/
+        this.current = new V();
+        this.current.start(json);
+      }.bind(this));
     } else {
       throw new Error('Please provide a view name !');
     }
