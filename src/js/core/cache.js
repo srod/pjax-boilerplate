@@ -1,59 +1,67 @@
 import settings from '../settings';
 
-var data;
-var cache = settings.CACHE;
-var cacheExpirationSeconds = (60 * 60 * 1); // 1 heure
+const CACHE_EXPIRATION_SECONDS = (60 * 60 * 1); // 1 hour
 
 class Cache {
   constructor() {
-    console.log('cache init');
+    this.cache = settings.CACHE;
 
-    var Collection = Backbone.Collection.extend({
+    let Collection = Backbone.Collection.extend({
       localStorage: new Backbone.LocalStorage('cache')
     });
 
-    data = new Collection();
+    this.data = new Collection();
 
     // Retrieve all cache data
-    data.fetch();
+    this.data.fetch();
   }
 
-  static getCache(id) {
-    if (!cache) {
-      return false;
+  getCache(id) {
+    if (!this.cache) {
+      return;
     }
 
-    var dataInCache = (data.get(id) || null);
+    let dataInCache = (this.data.get(id) || null);
+    let dataExpired = this.isExpired(dataInCache);
 
-    if (dataInCache) {
-      var expiration = Math.round((new Date().getTime() - dataInCache.attributes.timestamp) / 1000);
-
-      // is cache expired ?
-      if (expiration > cacheExpirationSeconds) {
-        //removeCache(dataInCache);
-        dataInCache = null;
-      }
+    if (!dataExpired) {
+      return dataInCache;
     }
 
-    return dataInCache;
+    this.removeCache(id);
+
+    return null;
   }
 
-  static setCache(id, json) {
-    if (!cache) {
-      return false;
+  setCache(id, json) {
+    if (!this.cache) {
+      return;
     }
 
-    data.create({
+    return this.data.create({
       id: id,
       timestamp: new Date().getTime(),
       json: json
     });
-
-    return data.get(id);
   }
 
-  static removeCache(item) {
-    data.remove(item);
+  removeCache(id) {
+    return !!this.data.remove(id);
+  }
+
+  isExpired(dataInCache) {
+    if (!dataInCache) {
+      return;
+    }
+
+    let expiration = Math.round(
+      (new Date().getTime() - dataInCache.attributes.timestamp) / 1000
+    );
+
+    // is cache expired ?
+    if (expiration > CACHE_EXPIRATION_SECONDS) {
+      return true;
+    }
   }
 }
 

@@ -8,8 +8,8 @@
     "url": "git://github.com/srod/pjax-boilerplate.git"
   },
   "keywords": [
-    "pjax",
-    "boilerplate"
+    "boilerplate",
+    "pjax"
   ],
   "author": "Rodolphe Stoclin <srodolphe@gmail.com>",
   "license": "MIT",
@@ -18,28 +18,29 @@
   },
   "homepage": "https://github.com/srod/pjax-boilerplate",
   "scripts": {
-    "test": "gulp test"
+    "test": "node ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
   },
   "devDependencies": {
-    "babel-eslint": "^3.1.17",
-    "del": "^1.2.0",
-    "esperanto": "^0.7.2",
-    "gulp": "^3.9.0",
-    "gulp-babel": "^5.1.0",
-    "gulp-eslint": "^0.14.0",
-    "gulp-file": "^0.2.0",
-    "gulp-filter": "^2.0.2",
-    "gulp-jscs": "^1.6.0",
-    "gulp-load-plugins": "^1.0.0-rc.1",
-    "gulp-plumber": "^1.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^1.5.2",
-    "gulp-uglify": "^1.2.0",
-    "mkdirp": "^0.5.1",
-    "require-dir": "^0.3.0"
-  },
-  "babelBoilerplateOptions": {
-    "entryFileName": "js/app",
-    "exportVarName": "app"
+    "babel-eslint": "^4.0.5",
+    "babel-loader": "^5.3.2",
+    "bundle-loader": "^0.5.4",
+    "chai": "^3.2.0",
+    "es6-weak-map": "^1.0.2",
+    "eslint": "^1.0.0",
+    "eslint-loader": "^0.14.2",
+    "file-loader": "^0.8.4",
+    "isparta-loader": "^0.2.0",
+    "jscs": "^2.0.0",
+    "jscs-loader": "^0.2.0",
+    "karma": "^0.13.3",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^0.4.2",
+    "karma-mocha": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "karma-spec-reporter": "0.0.20",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.2.5",
+    "phantomjs": "^1.9.17",
+    "webpack": "^1.10.5"
   }
 }
