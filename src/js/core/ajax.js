@@ -2,14 +2,15 @@ import View from './view';
 import Cache from './cache';
 import utils from '../modules/utils';
 
+let view = new View();
+let cache = new Cache();
+
 class Ajax {
   constructor() {
-    console.log('ajax init');
+    console.log('core === Ajax constructor');
   }
 
   ajaxRequest(url) {
-    let view = new View();
-    let cache = new Cache();
     let cacheData = cache.getCache(utils.cleanURL(url));
     let ajaxRequestCallback = (json) => {
       // Set data in cache

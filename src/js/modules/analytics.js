@@ -3,7 +3,7 @@ import settings from '../settings';
 const analytics = {};
 
 analytics.init = () => {
-  console.log('analytics.init');
+  console.log('modules === analytics.init');
 
   window._gaq = window._gaq || [];
   _gaq.push([

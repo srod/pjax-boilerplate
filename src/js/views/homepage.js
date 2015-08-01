@@ -1,6 +1,6 @@
 class Homepage extends Backbone.View {
   constructor() {
-    console.log('homepage');
+    console.log('views === Homepage constructor');
 
     let options = {
       el: '#container'

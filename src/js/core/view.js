@@ -3,7 +3,7 @@ import utils from '../modules/utils';
 
 class View {
   constructor() {
-    console.log('view init');
+    console.log('core === View constructor');
 
     this.current = null;
 

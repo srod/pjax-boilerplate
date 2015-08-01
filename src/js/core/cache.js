@@ -4,6 +4,8 @@ const CACHE_EXPIRATION_SECONDS = (60 * 60 * 1); // 1 hour
 
 class Cache {
   constructor() {
+    console.log('core === Cache constructor');
+
     this.cache = settings.CACHE;
 
     let Collection = Backbone.Collection.extend({

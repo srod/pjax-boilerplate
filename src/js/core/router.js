@@ -4,7 +4,7 @@ import analytics from '../modules/analytics';
 
 class Router extends Backbone.Router {
   constructor() {
-    console.log('router init');
+    console.log('core === Router constructor');
 
     let ajax = new Ajax();
     let options = {};

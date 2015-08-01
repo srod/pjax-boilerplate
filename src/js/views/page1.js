@@ -1,6 +1,6 @@
 class Page1 extends Backbone.View {
   constructor() {
-    console.log('Page1');
+    console.log('views === Page1 constructor');
 
     let options = {
       el: '#container'
