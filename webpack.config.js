@@ -3,7 +3,6 @@
 
 var path = require('path');
 var webpack = require('webpack');
-var bowerComponentsPath = path.join(__dirname, 'bower_components');
 var pathSrc = 'src/';
 
 module.exports = {
@@ -49,14 +48,11 @@ module.exports = {
     ]
   },
   resolve: {
-    root: [
-      bowerComponentsPath
-    ],
     alias: {
       jquery: 'jquery/dist/jquery.js',
       underscore: 'underscore/underscore.js',
       backbone: 'backbone/backbone.js',
-      'backbone.localStorage': 'backbone.localStorage/backbone.localStorage.js'
+      'backbone.localStorage': 'backbone.localstorage/backbone.localStorage.js'
     }
   },
   plugins: [

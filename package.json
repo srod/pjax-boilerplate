@@ -24,7 +24,6 @@
     "babel-loader": "^5.3.2",
     "bundle-loader": "^0.5.4",
     "chai": "^3.2.0",
-    "es6-weak-map": "^1.0.2",
     "eslint": "^1.0.0",
     "eslint-loader": "^0.14.2",
     "file-loader": "^0.8.4",
@@ -41,5 +40,11 @@
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.17",
     "webpack": "^1.10.5"
+  },
+  "dependencies": {
+    "backbone": "^1.2.1",
+    "backbone.localstorage": "^1.1.16",
+    "jquery": "^2.1.4",
+    "underscore": "^1.8.3"
   }
 }
