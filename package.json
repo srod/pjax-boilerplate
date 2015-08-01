@@ -2,7 +2,6 @@
   "name": "pjax-boilerplate",
   "version": "0.0.0",
   "description": "Build very fast single page application with pjax",
-  "main": "dist/js/app.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/srod/pjax-boilerplate.git"
