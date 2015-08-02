@@ -1,6 +1,3 @@
-/* http://putaindecode.fr/posts/webpack/premier-exemple/ */
-/* https://github.com/daniele-zurico/es6-webpack-angular/blob/master/webpack.config.js */
-
 var path = require('path');
 var webpack = require('webpack');
 var pathSrc = 'src/';
@@ -12,9 +9,9 @@ module.exports = {
     page1: ['./src/js/views/page1.js'],
     page2: ['./src/js/views/page2.js'],
     vendor: [
-      'jquery',
-      'underscore',
       'backbone',
+      'backbone.nativeview',
+      'backbone.nativeajax',
       'backbone.localStorage'
     ]
   },
@@ -44,15 +41,23 @@ module.exports = {
         loaders: [
           'file?name=[path][name].[ext]&context=./src'
         ]
+      },
+      // Make UMD hit the CommonJS path.
+      {
+        test: /exoskeleton\.js$/,
+        loader: 'imports?define=>false'
       }
     ]
   },
+  externals: {
+    // Deliberately undefined vars for conditional exclusion for exoskeleton.
+    jquery: 'undefined',
+    underscore: 'undefined'
+  },
   resolve: {
     alias: {
-      jquery: 'jquery/dist/jquery.js',
-      underscore: 'underscore/underscore.js',
-      backbone: 'backbone/backbone.js',
-      'backbone.localStorage': 'backbone.localstorage/backbone.localStorage.js'
+      backbone: 'exoskeleton',
+      'backbone.localStorage': 'backbone.localstorage'
     }
   },
   plugins: [
@@ -60,11 +65,9 @@ module.exports = {
     //new webpack.NoErrorsPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      'window.$': 'jquery',
       Backbone: 'backbone',
+      'Backbone.NativeView': 'backbone.nativeview',
+      'Backbone.ajax': 'backbone.nativeajax',
       'Backbone.LocalStorage': 'backbone.localStorage'
     })
     // TODO à tester en prod (gain de taille finale ?)

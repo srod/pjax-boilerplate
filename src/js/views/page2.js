@@ -1,4 +1,4 @@
-class Page2 extends Backbone.View {
+class Page2 extends Backbone.NativeView {
   constructor() {
     console.log('views === Page2 constructor');
 
@@ -11,10 +11,6 @@ class Page2 extends Backbone.View {
 
   start(json) {
     console.log('in view Page2', json);
-
-    if (json && json.html) {
-      this.$el.html(json.html);
-    }
   }
 }
 

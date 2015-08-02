@@ -8,22 +8,28 @@ class View {
     this.current = null;
 
     // bind all links with pjax data attribute
-    this.bindLinks($('a[data-pjax]'));
+    this.bindLinks(document.querySelectorAll('a[data-pjax]'));
   }
 
-  bindLinks($a) {
+  bindLinks(tagsA) {
     if (Backbone.history) {
-      $a.on('click', function(e) {
-        e.preventDefault();
-
-        var href = this.pathname + this.search;
-
-        Backbone.history.navigate(href, true);
-      });
+      let doBind = (a) => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          let href = e.target.pathname + e.target.search;
+          Backbone.history.navigate(href, true);
+        }, false);
+      };
+      [].forEach.call(tagsA, doBind);
     }
   }
 
   create(json) {
+    if (this.current) {
+      this.destroy(this.current);
+      this.current = null;
+    }
+
     json = json || {};
 
     // set title document
@@ -36,26 +42,24 @@ class View {
       window.scrollTo(0, 0);
 
       // empty old content
-      globals.$container.empty();
+      while (globals.$container.firstChild) {
+        globals.$container.removeChild(globals.$container.firstChild);
+      }
 
       // append new content
-      utils.append(globals.$container[0], json.html);
+      utils.append(globals.$container, json.html);
 
       // bind all links with pjax data attribute
-      this.bindLinks(globals.$container.find('a[data-pjax]'));
+      this.bindLinks(globals.$container.querySelectorAll('a[data-pjax]'));
     }
 
     // require view and initialize
     // we must have a html tag with data-view="myviewname"
-    var view = $('<div>' + (json.html || globals.$body.html()) + '</div>')
-      .find('[data-view]:eq(0)').data('view');
+    var view = globals.$body.querySelector('[data-view]')
+      .getAttribute('data-view');
 
     if (view) {
       require('bundle!../views/' + view + '.js')(function(V) {
-        if (this.current) {
-          this.destroy(this.current);
-        }
-
         this.current = new V();
         this.current.start(json);
       }.bind(this));
@@ -71,11 +75,11 @@ class View {
 
     view.undelegateEvents();
 
-    view.$el.removeData().unbind();
+    //view.el.removeData().unbind();
 
     // remove view from DOM
-    //        view.remove();
-    //        Backbone.View.prototype.remove.call(view);
+    //view.remove();
+    //Backbone.NativeView.prototype.remove.call(view);
   }
 }
 
