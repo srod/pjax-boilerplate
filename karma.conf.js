@@ -1,10 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
-var resolve = webpackConfig.resolve;
-var loaders = webpackConfig.module.loaders;
-var plugins = webpackConfig.plugins;
-var externals = webpackConfig.externals;
 var pathSrc = 'src/';
 var pathTest = 'test/';
 
@@ -44,11 +40,11 @@ module.exports = function(config) {
             loader: 'isparta!jscs!eslint'
           }
         ],
-        loaders: loaders
+        loaders: webpackConfig.loaders
       },
-      externals: externals,
-      resolve: resolve,
-      plugins: plugins
+      externals: webpackConfig.externals,
+      resolve: webpackConfig.resolve,
+      plugins: webpackConfig.plugins
     },
 
     webpackMiddleware: {
