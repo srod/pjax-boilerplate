@@ -4,6 +4,7 @@ var webpackConfig = require('./webpack.config.js');
 var resolve = webpackConfig.resolve;
 var loaders = webpackConfig.module.loaders;
 var plugins = webpackConfig.plugins;
+var externals = webpackConfig.externals;
 var pathSrc = 'src/';
 var pathTest = 'test/';
 
@@ -11,6 +12,8 @@ module.exports = function(config) {
   config.set({
 
     files: [
+      // PhantomJS polyfill
+      './node_modules/phantomjs-polyfill/bind-polyfill.js',
       'test/**/*_test.js'
     ],
 
@@ -43,6 +46,7 @@ module.exports = function(config) {
         ],
         loaders: loaders
       },
+      externals: externals,
       resolve: resolve,
       plugins: plugins
     },
