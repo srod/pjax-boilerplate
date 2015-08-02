@@ -10,7 +10,6 @@
 
   * ES6 (with [Babel](https://babeljs.io) compiler to ES5)
   * [Webpack](http://webpack.github.io)
-  * [Backbone.js](https://github.com/jashkenas/backbone)
-  * [jQuery](https://github.com/jquery/jquery)
+  * [Exoskeleton](http://exosjs.com) (no jQuery, no Underscore)
   * Testing with Karma / Mocha / Chai
   * Code coverage
