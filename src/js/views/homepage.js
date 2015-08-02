@@ -1,4 +1,4 @@
-class Homepage extends Backbone.View {
+class Homepage extends Backbone.NativeView {
   constructor() {
     console.log('views === Homepage constructor');
 
@@ -11,10 +11,6 @@ class Homepage extends Backbone.View {
 
   start(json) {
     console.log('in view homepage', json);
-
-    if (json && json.html) {
-      this.$el.html(json.html);
-    }
   }
 }
 

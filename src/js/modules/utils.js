@@ -1,5 +1,4 @@
 let utils = {};
-const hasInsertAdjacentHTML = !!$('body').prop('insertAdjacentHTML');
 
 utils.cleanURL = (url) => {
   url = encodeURI(url);
@@ -8,25 +7,7 @@ utils.cleanURL = (url) => {
 };
 
 let html = (type, domobj, shtml) => {
-  if (hasInsertAdjacentHTML) {
-    domobj.insertAdjacentHTML(type, shtml);
-  } else {
-    // jquery fallback
-    switch (type) {
-      case 'beforeend':
-        $(domobj).append(shtml);
-        break;
-      case 'afterbegin':
-        $(domobj).prepend(shtml);
-        break;
-      case 'beforebegin':
-        $(domobj).before(shtml);
-        break;
-      case 'afterend':
-        $(domobj).after(shtml);
-        break;
-    }
-  }
+  domobj.insertAdjacentHTML(type, shtml);
   return domobj;
 };
 

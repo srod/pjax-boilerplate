@@ -1,9 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
-var resolve = webpackConfig.resolve;
-var loaders = webpackConfig.module.loaders;
-var plugins = webpackConfig.plugins;
 var pathSrc = 'src/';
 var pathTest = 'test/';
 
@@ -11,6 +8,8 @@ module.exports = function(config) {
   config.set({
 
     files: [
+      // PhantomJS polyfill
+      './node_modules/phantomjs-polyfill/bind-polyfill.js',
       'test/**/*_test.js'
     ],
 
@@ -41,10 +40,11 @@ module.exports = function(config) {
             loader: 'isparta!jscs!eslint'
           }
         ],
-        loaders: loaders
+        loaders: webpackConfig.loaders
       },
-      resolve: resolve,
-      plugins: plugins
+      externals: webpackConfig.externals,
+      resolve: webpackConfig.resolve,
+      plugins: webpackConfig.plugins
     },
 
     webpackMiddleware: {

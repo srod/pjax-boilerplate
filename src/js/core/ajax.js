@@ -20,13 +20,17 @@ class Ajax {
 
     // if we have nothing in cache
     if (!cacheData) {
-      $.ajax({
+      var req = Backbone.ajax({
         url: '/' + (url || ''),
-        dataType: 'json',
         beforeSend: function(xhr) {
           xhr.setRequestHeader('X-PJAX', 'true');
+        },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         }
-      }).done(ajaxRequestCallback);
+      });
+      req.then(ajaxRequestCallback);
     } else {
       view.create(cacheData.attributes.json);
     }
