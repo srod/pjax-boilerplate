@@ -42,20 +42,20 @@ class View {
       window.scrollTo(0, 0);
 
       // empty old content
-      while (globals.$container.firstChild) {
-        globals.$container.removeChild(globals.$container.firstChild);
+      while (globals.container.firstChild) {
+        globals.container.removeChild(globals.container.firstChild);
       }
 
       // append new content
-      utils.append(globals.$container, json.html);
+      utils.append(globals.container, json.html);
 
       // bind all links with pjax data attribute
-      this.bindLinks(globals.$container.querySelectorAll('a[data-pjax]'));
+      this.bindLinks(globals.container.querySelectorAll('a[data-pjax]'));
     }
 
     // require view and initialize
     // we must have a html tag with data-view="myviewname"
-    var view = globals.$body.querySelector('[data-view]')
+    var view = globals.body.querySelector('[data-view]')
       .getAttribute('data-view');
 
     if (view) {
